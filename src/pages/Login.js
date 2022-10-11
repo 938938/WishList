@@ -1,13 +1,47 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import React, { useState } from 'react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const onChange = () => {}
+  const [newAccount, setNewAccount] = useState(true);
+  const onChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    if (name === 'email') {
+      setEmail(value);
+    }
+    if (name === 'password') {
+      setPassword(value);
+    }
+  };
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      let data;
+      const auth = getAuth();
+      if (newAccount) {
+        data = await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        data = await signInWithEmailAndPassword(auth, email, password);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onToggle = () => {
+    setNewAccount((prev) => !prev);
+  };
   return (
     <div>
-      <form>
+      <button onClick={onToggle}>
+        {newAccount ? '▷ Login' : '▷ Create New Account'}
+      </button>
+      <form onSubmit={onSubmit}>
         <input
           name='email'
           type='text'
@@ -24,9 +58,8 @@ const Login = () => {
           valeu={password}
           onChange={onChange}
         />
-        <button></button>
+        <button onSubmit={onSubmit}>Click !</button>
       </form>
-      {/* <button onClick={onSocialClick}>Google</button> */}
     </div>
   );
 };
