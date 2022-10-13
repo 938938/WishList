@@ -15,8 +15,8 @@ function App() {
         setIsLogin(false);
         setUserObj(null);
       }
+      setInit(true);
     });
-    setInit(true);
   }, []);
   return (
     <div className='App'>
