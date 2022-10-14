@@ -5,7 +5,7 @@ import Main from '../pages/Main';
 import Profile from '../pages/Profile';
 import Navigation from './Navigation';
 
-const Router = ({ isLogin }) => {
+const Router = ({ isLogin, userObj }) => {
   return (
     <BrowserRouter>
       {isLogin && <Navigation />}
@@ -13,7 +13,7 @@ const Router = ({ isLogin }) => {
         <Routes>
           {isLogin ? (
             <>
-              <Route path='/' element={<Main />} />
+              <Route path='/' element={<Main userObj={userObj} />} />
               <Route path='/profile' element={<Profile />} />
             </>
           ) : (

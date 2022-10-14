@@ -20,7 +20,6 @@ function App() {
   }, []);
   return (
     <div className='App'>
-      <h1>Your Wish List !!</h1>
       {init ? <Router isLogin={isLogin} userObj={userObj} /> : 'Loading...'}
     </div>
   );

@@ -38,6 +38,7 @@ const Login = () => {
   };
   return (
     <div>
+      <h1>Your Wish List !!</h1>
       <button onClick={onToggle}>
         {newAccount ? '▷ Login' : '▷ Create New Account'}
       </button>
