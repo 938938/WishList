@@ -1,6 +1,12 @@
-import { addDoc, collection } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import { dbService, storageService } from '../fbase';
 import { BLUE, GREEN, RED, VIOLET, WHITE, YELLOW } from '../global/globalColor';
@@ -15,6 +21,23 @@ const Main = ({ userObj }) => {
   const [choiceColor, setChoiceColor] = useState(RED);
   const [filterColor, setFilterColor] = useState(WHITE);
 
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const q = query(
+      collection(dbService, 'wish-item'),
+      orderBy('createdAt', 'desc')
+    );
+    onSnapshot(q, (snapshot) => {
+      const itemArr = snapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
+      setItems(itemArr);
+    });
+    console.log(items);
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if (siteLink === '' && text === '') return;
@@ -26,7 +49,7 @@ const Main = ({ userObj }) => {
     }
     const itemObj = {
       text,
-      createAt: Date.now(),
+      createdAt: Date.now(),
       creatorId: userObj.uid,
       photoUrl,
       choiceColor,
@@ -66,6 +89,7 @@ const Main = ({ userObj }) => {
   const changeFilter = (e) => {
     setFilterColor(e.target.name);
   };
+  const onDelete = () => {}
   return (
     <div>
       {colorBox.map((color) => {
@@ -150,7 +174,23 @@ const Main = ({ userObj }) => {
           backgroundColor: filterColor,
         }}
       >
-        <p>아이템 불러온거</p>
+        {items.map((item) => {
+          return (
+            <div key={item.createdAt}>
+              <img
+                src={item.photoUrl}
+                style={{
+                  width: 100,
+                  height: 100,
+                  border: `1px solid black`,
+                  background: WHITE,
+                }}
+              />
+              <div>{item.text}</div>
+              <button onClick={onDelete}>Delete</button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
