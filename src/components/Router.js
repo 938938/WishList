@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
-import Profile from '../pages/Profile';
+import Memo from '../pages/Memo';
 import Navigation from './Navigation';
 
 const Router = ({ isLogin, userObj }) => {
@@ -14,7 +14,7 @@ const Router = ({ isLogin, userObj }) => {
           {isLogin ? (
             <>
               <Route path='/' element={<Main userObj={userObj} />} />
-              <Route path='/profile' element={<Profile />} />
+              <Route path='/memo' element={<Memo />} />
             </>
           ) : (
             <Route path='/' element={<Login />} />

@@ -23,6 +23,7 @@ const ItemCreator = ({ userObj }) => {
       photoUrl = await getDownloadURL(response.ref);
     }
     const itemObj = {
+      siteLink,
       text,
       createdAt: Date.now(),
       creatorId: userObj.uid,

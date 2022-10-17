@@ -1,10 +1,17 @@
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 import { BLUE, GREEN, RED, VIOLET, WHITE, YELLOW } from '../global/globalColor';
 
 import ItemCreator from '../components/ItemCreator';
 import Item from '../components/Item';
+import LogOut from '../components/LogOut';
 
 const Main = ({ userObj }) => {
   const filterBox = [WHITE, RED, YELLOW, GREEN, BLUE, VIOLET];
@@ -15,7 +22,8 @@ const Main = ({ userObj }) => {
   useEffect(() => {
     const q = query(
       collection(dbService, 'wish-item'),
-      orderBy('createdAt', 'desc')
+      where('creatorId', '==', `${userObj.uid}`)
+      // orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (snapshot) => {
       const itemArr = snapshot.docs.map((document) => ({
@@ -31,6 +39,7 @@ const Main = ({ userObj }) => {
   };
   return (
     <div>
+      <LogOut />
       <ItemCreator userObj={userObj} />
       {filterBox.map((color) => {
         return (
