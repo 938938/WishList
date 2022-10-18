@@ -5,9 +5,6 @@ import { dbService, storageService } from '../fbase';
 import { WHITE } from '../global/globalColor';
 
 const Item = ({ itemObj }) => {
-  const [editing, setEditing] = useState(false);
-  const [newText, setNewText] = useState(itemObj.text);
-  const [newSiteLink, setNewSiteLink] = useState(itemObj.siteLink);
   const onDelete = async () => {
     const ok = window.confirm('해당 아이템을 삭제하시겠습니까?');
     if (ok) {
@@ -21,38 +18,23 @@ const Item = ({ itemObj }) => {
       }
     }
   };
-  const toggleEditing = () => {
-    setEditing((prev) => !prev);
-  };
-  const onEdit = () => {};
   return (
     <div>
-      {editing ? (
-        <>
-          <p>구현 중</p>
-          <button onClick={toggleEditing}>Cancel</button>
-        </>
-      ) : (
-        <>
-          {' '}
-          <img
-            src={itemObj.photoUrl}
-            style={{
-              width: 100,
-              height: 100,
-              border: `1px solid black`,
-              background: WHITE,
-            }}
-          />
-          {/* <div><a ref={itemObj.siteLink} /></div> */}
-          <button onClick={() => window.open(itemObj.siteLink, '_blank')}>
-            링크
-          </button>
-          <div>{itemObj.text}</div>
-          <button onClick={onDelete}>Delete</button>
-          <button onClick={toggleEditing}>Edit</button>
-        </>
-      )}
+      <img
+        src={itemObj.photoUrl}
+        style={{
+          width: 100,
+          height: 100,
+          border: `1px solid black`,
+          background: WHITE,
+        }}
+      />
+      {/* <div><a ref={itemObj.siteLink} /></div> */}
+      <button onClick={() => window.open(itemObj.siteLink, '_blank')}>
+        링크
+      </button>
+      <div>{itemObj.text}</div>
+      <button onClick={onDelete}>Delete</button>
     </div>
   );
 };

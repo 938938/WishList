@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import React, { useState } from 'react';
+import { AiOutlineUserAdd, AiOutlineLogin } from 'react-icons/ai';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -38,9 +39,8 @@ const Login = () => {
   };
   return (
     <div>
-      <h1>Your Wish List !!</h1>
       <button onClick={onToggle}>
-        {newAccount ? '▷ Login' : '▷ Create New Account'}
+        {newAccount ? <AiOutlineLogin /> : <AiOutlineUserAdd />}
       </button>
       <form onSubmit={onSubmit}>
         <input
