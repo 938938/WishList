@@ -5,6 +5,8 @@ import {
 } from 'firebase/auth';
 import React, { useState } from 'react';
 import { AiOutlineUserAdd, AiOutlineLogin } from 'react-icons/ai';
+import { FiArrowRight } from 'react-icons/fi';
+import styled from 'styled-components';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -38,10 +40,8 @@ const Login = () => {
     setNewAccount((prev) => !prev);
   };
   return (
-    <div>
-      <button onClick={onToggle}>
-        {newAccount ? <AiOutlineLogin /> : <AiOutlineUserAdd />}
-      </button>
+    <LogInDiv>
+      <LoginTitle>For your wish list</LoginTitle>
       <form onSubmit={onSubmit}>
         <input
           name='email'
@@ -59,10 +59,44 @@ const Login = () => {
           valeu={password}
           onChange={onChange}
         />
-        <button onSubmit={onSubmit}>Click !</button>
+        <Toggle onClick={onToggle}>
+          {newAccount ? 'Sign In' : 'Create Account'}
+        </Toggle>
+        <LoginButton onSubmit={onSubmit}>
+          {newAccount ? '회원가입' : '입장하기'}
+        </LoginButton>
       </form>
-    </div>
+    </LogInDiv>
   );
 };
 
 export default Login;
+const LoginTitle = styled.h3`
+  margin: 20px;
+`;
+const LogInDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  margin: 0 auto;
+`;
+
+const Toggle = styled.p`
+  width: 150px;
+  text-align: center;
+  margin: 5px auto;
+  cursor: pointer;
+`;
+
+const LoginButton = styled.button`
+  width: 300px;
+  height: 20px;
+  margin: 10px 5px;
+  padding: 10px;
+  border: 0;
+  border-radius: 20px;
+  box-sizing: content-box;
+`;

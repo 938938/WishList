@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { authService } from '../fbase';
-import GlobalStyle from '../GlobalStyle';
+import GlobalStyle from '../global/GlobalStyle';
 import Router from './Router';
 
 function App() {
@@ -23,20 +22,11 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AppDiv>
+      <div>
         {init ? <Router isLogin={isLogin} userObj={userObj} /> : 'Loading...'}
-      </AppDiv>
+      </div>
     </>
   );
 }
 
 export default App;
-
-const AppDiv = styled.div`
-  margin: 10px auto;
-  padding: 10px;
-  width: 80vw;
-  max-width: 600px;
-  min-width: 320px;
-  border: 1px solid white;
-`;

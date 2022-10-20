@@ -11,7 +11,6 @@ import { BLUE, GREEN, RED, VIOLET, WHITE, YELLOW } from '../global/globalColor';
 
 import ItemCreator from '../components/ItemCreator';
 import Item from '../components/Item';
-import LogOut from '../components/LogOut';
 
 const Main = ({ userObj }) => {
   const filterBox = [WHITE, RED, YELLOW, GREEN, BLUE, VIOLET];
@@ -39,7 +38,6 @@ const Main = ({ userObj }) => {
   };
   return (
     <div>
-      <LogOut />
       <ItemCreator userObj={userObj} />
       {filterBox.map((color) => {
         return (
@@ -54,7 +52,6 @@ const Main = ({ userObj }) => {
       <div
         style={{
           width: 800,
-          height: 1000,
           border: '1px solid black',
           backgroundColor: filterColor,
         }}
