@@ -117,6 +117,7 @@ const ItemCreator = ({ userObj }) => {
               value={siteLink}
               placeholder='Link'
               name='link'
+              type='url'
               onChange={onChange}
             />
           </div>
@@ -124,6 +125,7 @@ const ItemCreator = ({ userObj }) => {
             value={text}
             placeholder='추가 정보'
             name='text'
+            type='text'
             onChange={onChange}
           />
           <button>Okay</button>

@@ -4,14 +4,12 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import React, { useState } from 'react';
-import { AiOutlineUserAdd, AiOutlineLogin } from 'react-icons/ai';
-import { FiArrowRight } from 'react-icons/fi';
 import styled from 'styled-components';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [newAccount, setNewAccount] = useState(true);
+  const [newAccount, setNewAccount] = useState(false);
   const onChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;

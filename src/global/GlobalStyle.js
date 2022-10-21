@@ -6,8 +6,8 @@ const GlobalStyle = createGlobalStyle`
   padding:0;
 }
 body{
-  background-color:black;
-  color:white;
+  background-color:#1A3265;
+  color:#EDEDE6;
 }
 input{
   width:300px;
@@ -15,7 +15,7 @@ input{
   margin:5px;
   padding:10px;
   border:0;
-  border-radius:20px;
+  border-radius:10px;
   box-sizing: content-box;
 }
 button{

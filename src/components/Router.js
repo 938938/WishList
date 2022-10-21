@@ -3,12 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import Memo from '../pages/Memo';
-import Navigation from './Navigation';
+import Header from './Header';
 
 const Router = ({ isLogin, userObj }) => {
   return (
     <BrowserRouter>
-      {isLogin && <Navigation />}
+      {isLogin && <Header />}
       <div>
         <Routes>
           {isLogin ? (
