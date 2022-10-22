@@ -61,7 +61,7 @@ const Login = () => {
           {newAccount ? 'Sign In' : 'Create Account'}
         </Toggle>
         <LoginButton onSubmit={onSubmit}>
-          {newAccount ? '회원가입' : '입장하기'}
+          {newAccount ? '회원가입' : '시작하기'}
         </LoginButton>
       </form>
     </LogInDiv>

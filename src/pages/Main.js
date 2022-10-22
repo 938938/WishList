@@ -7,14 +7,17 @@ import {
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { BLUE, GREEN, RED, VIOLET, WHITE, YELLOW } from '../global/globalColor';
+import { GREEN1, GREEN2, GREEN3, GREEN4, WHITE } from '../global/globalColor';
 
 import ItemCreator from '../components/ItemCreator';
 import Item from '../components/Item';
+import styled from 'styled-components';
+import Line from '../UI/Line';
+import ItemList from '../components/ItemList';
 
 const Main = ({ userObj }) => {
-  const filterBox = [WHITE, RED, YELLOW, GREEN, BLUE, VIOLET];
-  const [filterColor, setFilterColor] = useState(WHITE);
+
+
 
   const [items, setItems] = useState([]);
 
@@ -33,23 +36,11 @@ const Main = ({ userObj }) => {
     });
   }, []);
 
-  const changeFilter = (e) => {
-    setFilterColor(e.target.name);
-  };
   return (
     <div>
       <ItemCreator userObj={userObj} />
-      {filterBox.map((color) => {
-        return (
-          <button
-            key={color}
-            name={color}
-            style={{ width: 30, height: 20, backgroundColor: color }}
-            onClick={changeFilter}
-          />
-        );
-      })}
-      <div
+      <Line />
+      {/* <div
         style={{
           width: 800,
           border: '1px solid black',
@@ -59,7 +50,8 @@ const Main = ({ userObj }) => {
         {items.map((item) => {
           return <Item key={item.id} itemObj={item} />;
         })}
-      </div>
+      </div> */}
+      <ItemList items={items} />
     </div>
   );
 };

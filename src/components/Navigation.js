@@ -8,9 +8,11 @@ const Navigation = () => {
     <>
       <StyledLink to='/'>
         <AiFillHome className='icon' />
+        <p>HOME</p>
       </StyledLink>
       <StyledLink to='memo'>
         <AiOutlineFileText className='icon' />
+        <p>MEMO</p>
       </StyledLink>
     </>
   );
@@ -24,13 +26,14 @@ const StyledLink = styled(Link)`
   width: 20px;
   height: 20px;
   margin: 10px 20px;
+  display: flex;
 
   &:focus,
   &:hover,
   &:link,
   &:active {
     text-decoration: none;
-    color: gray;
+    color: white;
   }
 
   .icon {

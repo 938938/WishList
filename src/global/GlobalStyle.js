@@ -6,8 +6,8 @@ const GlobalStyle = createGlobalStyle`
   padding:0;
 }
 body{
-  background-color:#1A3265;
-  color:#EDEDE6;
+  background-color:#346273;
+  color:#13394D;
 }
 input{
   width:300px;
@@ -19,10 +19,11 @@ input{
   box-sizing: content-box;
 }
 button{
-  width:30px;
-  height:30px;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  margin: 5px 0;
   border:0;
-  border-radius:30px;
   cursor: pointer;
   text-align:center;
 }
