@@ -1,4 +1,4 @@
-# WishList ! - React.ver
+# WishList !
 
 ReactJS, Firebase, styled-components 사용
 <br>
