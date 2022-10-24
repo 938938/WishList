@@ -1,5 +1,6 @@
 import {
   collection,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -7,25 +8,18 @@ import {
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { GREEN1, GREEN2, GREEN3, GREEN4, WHITE } from '../global/globalColor';
-
 import ItemCreator from '../components/ItemCreator';
-import Item from '../components/Item';
-import styled from 'styled-components';
 import Line from '../UI/Line';
 import ItemList from '../components/ItemList';
 
 const Main = ({ userObj }) => {
-
-
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     const q = query(
       collection(dbService, 'wish-item'),
-      where('creatorId', '==', `${userObj.uid}`)
-      // orderBy('createdAt', 'desc')
+      where('creatorId', '==', `${userObj.uid}`),
+      orderBy('createdAt', 'desc')
     );
     onSnapshot(q, (snapshot) => {
       const itemArr = snapshot.docs.map((document) => ({

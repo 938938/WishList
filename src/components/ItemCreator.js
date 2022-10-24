@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { v4 } from 'uuid';
 import { dbService, storageService } from '../fbase';
 import { BLUE2, GREEN1, GREEN2, GREEN3, GREEN4 } from '../global/globalColor';
-import { IoMdPaw } from 'react-icons/io';
+import { IoMdPhotos } from 'react-icons/io';
 import styled from 'styled-components';
 
 const ItemCreator = ({ userObj }) => {
@@ -65,7 +65,7 @@ const ItemCreator = ({ userObj }) => {
   };
   return (
     <>
-      <CreatorForm onSubmit={onSubmit} color={choiceColor} bgColor={BLUE2}>
+      <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
         <BtnBox>
           {colorBox.map((color) => {
             return (
@@ -78,12 +78,12 @@ const ItemCreator = ({ userObj }) => {
             );
           })}
         </BtnBox>
-        <PhotoBox>
+        <PhotoBox color={choiceColor}>
           {photoFile ? (
             <PhotoImg src={photoFile} onClick={clearPhoto} />
           ) : (
             <PhotoLabel htmlFor='attach-file'>
-              <IoMdPaw className='icon' />
+              <IoMdPhotos className='icon' />
             </PhotoLabel>
           )}
         </PhotoBox>
@@ -123,13 +123,12 @@ export default ItemCreator;
 
 const CreatorForm = styled.form`
   width: 40vw;
+  min-width: 500px;
   height: 130px;
   margin: 0 auto;
   padding: 10px;
   box-sizing: border-box;
-  border: thick double ${(props) => props.color};
   border-radius: 10px;
-  /* background-color: ${(props) => props.bgColor}; */
   background-color: white;
   display: flex;
 `;
@@ -152,6 +151,7 @@ const PhotoBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
   margin: 0 10px;
+  border: 3px solid ${(props) => props.color};
 `;
 
 const PhotoImg = styled.img`
@@ -160,10 +160,15 @@ const PhotoImg = styled.img`
 `;
 
 const PhotoLabel = styled.label`
+  cursor: pointer;
+
   .icon {
     width: 100px;
     height: 100px;
     background-color: white;
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;
 
@@ -173,6 +178,10 @@ const SubmitBtn = styled.button`
   height: 90px;
   border-radius: 10px;
   border: 0;
+  &:hover {
+    background-color: lightgray;
+    color: white;
+  }
 `;
 
 const PhotoInput = styled.input`

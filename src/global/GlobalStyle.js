@@ -6,11 +6,12 @@ const GlobalStyle = createGlobalStyle`
   padding:0;
 }
 body{
-  background-color:#346273;
-  color:#13394D;
+  background-color:#b2dfdb;
+  color:#260503;
 }
 input{
-  width:300px;
+  width:20vw;
+  min-width:200px;
   height:20px;
   margin:5px;
   padding:10px;

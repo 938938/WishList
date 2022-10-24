@@ -8,10 +8,15 @@ const Card = (props) => {
 export default Card;
 
 const CardBox = styled.div`
-  border: 1px solid black;
+  background-color: white;
   width: 30vw;
   height: 120px;
   display: flex;
   padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
   box-sizing: border-box;
+  @media screen and (max-width: 400px) {
+    width: 90vw;
+  }
 `;
