@@ -16,7 +16,7 @@ const CardBox = styled.div`
   border-radius: 10px;
   margin: 10px;
   box-sizing: border-box;
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 460px) {
     width: 90vw;
   }
 `;

@@ -1,15 +1,15 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { dbService, storageService } from '../fbase';
-import { WHITE } from '../global/globalColor';
 import Card from '../UI/Card';
 import { AiOutlineLink, AiOutlineStar } from 'react-icons/ai';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { BsQuestionCircle } from 'react-icons/bs';
 
 const Item = ({ itemObj }) => {
+  const [modal, setModal] = useState(false);
   const onDelete = async () => {
     const ok = window.confirm('해당 아이템을 삭제하시겠습니까?');
     if (ok) {
@@ -23,21 +23,17 @@ const Item = ({ itemObj }) => {
       }
     }
   };
+  const onModal = () => {
+    setModal((modal) => !modal);
+  };
   return (
     <Card>
       <ImgBox color={itemObj.choiceColor}>
         {itemObj.photoUrl ? (
-          <ImgItem
-            src={itemObj.photoUrl}
-            style={{
-              width: 100,
-              height: 100,
-              background: WHITE,
-            }}
-          />
+          <ImgItem src={itemObj.photoUrl} onClick={onModal} />
         ) : (
           <IconBox>
-            <AiOutlineStar style={{ width: 50, height: 50 }} />
+            <AiOutlineStar className='icon' />
           </IconBox>
         )}
       </ImgBox>
@@ -59,6 +55,13 @@ const Item = ({ itemObj }) => {
         </div>
         <Text>{itemObj.text}</Text>
       </TextBox>
+      {modal ? (
+        <>
+          <Modal src={itemObj.photoUrl} onClick={onModal} />
+        </>
+      ) : (
+        <></>
+      )}
     </Card>
   );
 };
@@ -77,14 +80,21 @@ const ImgBox = styled.div`
 const ImgItem = styled.img`
   border: 0;
   cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-color: white;
 `;
 
 const IconBox = styled.div`
   width: 100px;
   height: 100px;
   background-color: white;
-  padding: 25px;
+  padding: 23px;
   box-sizing: border-box;
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const TextBox = styled.div`
@@ -115,5 +125,19 @@ const Text = styled.div`
   -ms-overflow-style: none;
   ::-webkit-scrollbar {
     display: none;
+  }
+`;
+
+const Modal = styled.img`
+  position: absolute;
+  top: -130px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 1000px;
+  max-height: 600px;
+  cursor: pointer;
+  @media screen and (max-width: 460px) {
+    max-width: 400px;
+    max-height: 500px;
   }
 `;

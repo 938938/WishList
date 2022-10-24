@@ -8,11 +8,11 @@ const Navigation = () => {
     <>
       <StyledLink to='/'>
         <AiFillHome className='icon' />
-        <p>HOME</p>
+        <NaviMenu>HOME</NaviMenu>
       </StyledLink>
       <StyledLink to='memo'>
         <AiOutlineFileText className='icon' />
-        <p>MEMO</p>
+        <NaviMenu>MEMO</NaviMenu>
       </StyledLink>
     </>
   );
@@ -40,5 +40,14 @@ const StyledLink = styled(Link)`
     font-size: 20px;
     width: 20px;
     height: 20px;
+    @media screen and (min-width: 460px) {
+      display: none;
+    }
+  }
+`;
+
+const NaviMenu = styled.p`
+  @media screen and (max-width: 460px) {
+    display: none;
   }
 `;

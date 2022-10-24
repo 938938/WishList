@@ -18,6 +18,9 @@ input{
   border:0;
   border-radius:10px;
   box-sizing: content-box;
+  @media screen and (max-width: 460px) {
+    width:80vw;
+  }
 }
 button{
   width: 15px;

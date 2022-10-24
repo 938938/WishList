@@ -83,18 +83,25 @@ const LogInDiv = styled.div`
 `;
 
 const Toggle = styled.p`
-  width: 150px;
+  width: 20vw;
   text-align: center;
   margin: 5px auto;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const LoginButton = styled.button`
-  width: 300px;
+  width: 20vw;
   height: 20px;
   margin: 10px 5px;
   padding: 10px;
   border: 0;
   border-radius: 20px;
   box-sizing: content-box;
+  &:hover {
+    background-color: gray;
+    color: white;
+  }
 `;

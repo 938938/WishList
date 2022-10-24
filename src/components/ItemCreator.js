@@ -64,58 +64,59 @@ const ItemCreator = ({ userObj }) => {
     setChoiceColor(e.target.name);
   };
   return (
-    <>
-      <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
-        <BtnBox>
-          {colorBox.map((color) => {
-            return (
-              <ColorBtn
-                bgColor={color}
-                key={color}
-                name={color}
-                onClick={changeColor}
-              />
-            );
-          })}
-        </BtnBox>
-        <PhotoBox color={choiceColor}>
-          {photoFile ? (
-            <PhotoImg src={photoFile} onClick={clearPhoto} />
-          ) : (
-            <PhotoLabel htmlFor='attach-file'>
-              <IoMdPhotos className='icon' />
-            </PhotoLabel>
-          )}
-        </PhotoBox>
-        <PhotoInput
-          id='attach-file'
-          type='file'
-          accept='image/*'
-          onChange={onFileChange}
-        />
+    <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
+      <BtnBox>
+        {colorBox.map((color) => {
+          return (
+            <ColorBtn
+              bgColor={color}
+              key={color}
+              name={color}
+              onClick={changeColor}
+            />
+          );
+        })}
+      </BtnBox>
+      <PhotoBox color={choiceColor}>
+        {photoFile ? (
+          <PhotoImg src={photoFile} onClick={clearPhoto} />
+        ) : (
+          <PhotoLabel htmlFor='attach-file'>
+            <IoMdPhotos className='icon' />
+          </PhotoLabel>
+        )}
+      </PhotoBox>
+      <PhotoInput
+        id='attach-file'
+        type='file'
+        accept='image/*'
+        onChange={onFileChange}
+      />
+      <div>
+        <PhotoLabel2 htmlFor='attach-file' color={choiceColor}>
+          ▷ Photo Upload
+        </PhotoLabel2>
         <div>
-          <div>
-            <input
-              value={siteLink}
-              placeholder='Link'
-              name='link'
-              type='url'
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <input
-              value={text}
-              placeholder='추가 정보'
-              name='text'
-              type='text'
-              onChange={onChange}
-            />
-          </div>
+          <Input
+            value={siteLink}
+            placeholder='Link'
+            name='link'
+            type='url'
+            onChange={onChange}
+          />
         </div>
-        <SubmitBtn>Okay</SubmitBtn>
-      </CreatorForm>
-    </>
+        <div>
+          <Input
+            value={text}
+            placeholder='추가 정보'
+            name='text'
+            type='text'
+            onChange={onChange}
+          />
+        </div>
+      </div>
+      <SubmitBtn>Okay</SubmitBtn>
+    </CreatorForm>
   );
 };
 
@@ -131,7 +132,12 @@ const CreatorForm = styled.form`
   border-radius: 10px;
   background-color: white;
   display: flex;
+  @media screen and (max-width: 460px) {
+    width: 90vw;
+    min-width: 300px;
+  }
 `;
+
 const BtnBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -152,6 +158,9 @@ const PhotoBox = styled.div`
   overflow: hidden;
   margin: 0 10px;
   border: 3px solid ${(props) => props.color};
+  @media screen and (max-width: 460px) {
+    display: none;
+  }
 `;
 
 const PhotoImg = styled.img`
@@ -169,6 +178,27 @@ const PhotoLabel = styled.label`
     &:hover {
       opacity: 0.5;
     }
+  }
+`;
+
+const PhotoLabel2 = styled.label`
+  display: none;
+  @media screen and (max-width: 460px) {
+    display: block;
+    font-size: 5px;
+    cursor: pointer;
+    position: relative;
+    top: -5px;
+    color:${(props) => props.color};
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+`;
+
+const Input = styled.input`
+  @media screen and (max-width: 460px) {
+    width: 30vw;
   }
 `;
 

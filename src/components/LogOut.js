@@ -13,7 +13,7 @@ const LogOut = () => {
   return (
     <Logout onClick={onLogOut}>
       <ImExit className='logout-icon' />
-      <p>LOGOUT</p>
+      <Text>LOGOUT</Text>
     </Logout>
   );
 };
@@ -35,7 +35,19 @@ const Logout = styled.div`
   &:active {
     color: whitesmoke;
   }
+  @media screen and (max-width: 460px) {
+    right: 40px;
+  }
   .logout-icon {
     font-size: 20px;
+    @media screen and (min-width: 460px) {
+      display: none;
+    }
+  }
+`;
+
+const Text = styled.p`
+  @media screen and (max-width: 460px) {
+    display: none;
   }
 `;
