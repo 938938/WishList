@@ -14,7 +14,7 @@ const Router = ({ isLogin, userObj }) => {
           {isLogin ? (
             <>
               <Route path='/' element={<Main userObj={userObj} />} />
-              <Route path='/memo' element={<Memo />} />
+              <Route path='/memo' element={<Memo userObj={userObj} />} />
             </>
           ) : (
             <Route path='/' element={<Login />} />
