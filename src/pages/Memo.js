@@ -19,10 +19,17 @@ const Memo = ({ userObj }) => {
     });
   }, []);
   return (
-    <MemoBox>
-      {/* {memo} */}
-      <MemoEdit userObj={userObj} />
-    </MemoBox>
+    <>
+      <div>
+        {' '}
+        <button>수정</button>
+        <button>삭제</button>
+      </div>
+      <MemoBox>
+        {memo}
+        {/* <MemoEdit userObj={userObj} /> */}
+      </MemoBox>
+    </>
   );
 };
 

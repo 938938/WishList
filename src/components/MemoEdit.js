@@ -19,16 +19,22 @@ const MemoEdit = ({ userObj }) => {
     };
     await addDoc(collection(dbService, 'memo-text'), textObj);
   };
+  const onCancel = () => {
+    setText('');
+  };
   return (
-    <div>
-      {/* <div>
+    <>
+      <div>
         {' '}
         <button onClick={onSubmit}>저장</button>
-      </div> */}
-      <TextBox>
-        <Text value={text} onChange={onChange} />
-      </TextBox>
-    </div>
+        <button onClick={onCancel}>취소</button>
+      </div>
+      <div>
+        <TextBox>
+          <Text value={text} onChange={onChange} />
+        </TextBox>
+      </div>
+    </>
   );
 };
 
