@@ -34,17 +34,6 @@ const Main = ({ userObj }) => {
     <div>
       <ItemCreator userObj={userObj} />
       <Line />
-      {/* <div
-        style={{
-          width: 800,
-          border: '1px solid black',
-          backgroundColor: filterColor,
-        }}
-      >
-        {items.map((item) => {
-          return <Item key={item.id} itemObj={item} />;
-        })}
-      </div> */}
       <ItemList items={items} />
     </div>
   );

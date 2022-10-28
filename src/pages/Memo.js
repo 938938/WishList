@@ -1,11 +1,23 @@
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MemoEdit from '../components/MemoEdit';
+import MemoButton from '../components/MemoButton';
 import { dbService } from '../fbase';
 
 const Memo = ({ userObj }) => {
   const [memo, setMemo] = useState('');
+  const [editMemo, setEditMemo] = useState(memo);
+  const [edit, setEdit] = useState(false);
+
   useEffect(() => {
     const q = query(
       collection(dbService, 'memo-text'),
@@ -13,21 +25,71 @@ const Memo = ({ userObj }) => {
     );
     onSnapshot(q, (snapshot) => {
       const memoText = snapshot.docs.map((document) => ({
+        id: document.id,
         ...document.data(),
       }));
       setMemo(memoText[0].memo);
     });
   }, []);
+
+  const editToggle = () => {
+    //   setEdit((edit) => !edit);
+  };
+  const onChange = (e) => {
+    //   const {
+    //     target: { value },
+    //   } = e;
+    //   setEditMemo(value);
+  };
+  const onDelete = async () => {
+    //   try {
+    //     await deleteDoc(doc(dbService, 'memo-text', `${memo.creatorId}`));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+  };
+  const onSubmit = async (e) => {
+    //   e.preventDefault();
+    //   const textObj = {
+    //     memo: editMemo,
+    //     creatorId: userObj.uid,
+    //   };
+    //   await addDoc(collection(dbService, 'memo-text'), textObj);
+  };
+  const onEdit = async (e) => {
+    //   e.preventDefault();
+    //   await updateDoc(doc(dbService, 'memo-text', `${memo}`), {
+    //     memo: editMemo,
+    //   });
+    //   setEdit(false);
+  };
+  const onCancel = () => {
+    //   editToggle();
+    //   setEditMemo('');
+  };
   return (
     <>
-      <div>
-        {' '}
-        <button>수정</button>
-        <button>삭제</button>
-      </div>
+      <BtnBox>
+        {edit ? (
+          <>
+            {' '}
+            <MemoButton onClick={onEdit} text='저장' />
+            <MemoButton onClick={onCancel} text='취소' />
+          </>
+        ) : (
+          <>
+            {' '}
+            <MemoButton onClick={editToggle} text='수정' />
+            <MemoButton onClick={onDelete} text='삭제' />
+          </>
+        )}
+      </BtnBox>
       <MemoBox>
-        {memo}
-        {/* <MemoEdit userObj={userObj} /> */}
+        {edit ? (
+          <Text value={editMemo} onChange={onChange} />
+        ) : (
+          <div>{memo}</div>
+        )}
       </MemoBox>
     </>
   );
@@ -40,4 +102,16 @@ const MemoBox = styled.div`
   height: 60vh;
   margin: 0 auto;
   background-color: #ffffff20;
+`;
+const Text = styled.textarea`
+  width: 90vw;
+  height: 60vh;
+  border: 0;
+  background-color: transparent;
+  resize: none;
+`;
+
+const BtnBox = styled.div`
+  width: 200px;
+  margin: 0 auto;
 `;

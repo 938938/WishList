@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { dbService } from '../fbase';
 
 const MemoEdit = ({ userObj }) => {
-  const [text, setText] = useState('');
+
   const onChange = (e) => {
     const {
       target: { value },
@@ -31,7 +31,7 @@ const MemoEdit = ({ userObj }) => {
       </div>
       <div>
         <TextBox>
-          <Text value={text} onChange={onChange} />
+
         </TextBox>
       </div>
     </>
