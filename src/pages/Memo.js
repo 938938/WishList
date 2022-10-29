@@ -14,8 +14,8 @@ import MemoButton from '../components/MemoButton';
 import { dbService } from '../fbase';
 
 const Memo = ({ userObj }) => {
-  const [memo, setMemo] = useState('');
-  const [editMemo, setEditMemo] = useState(memo);
+  const [memo, setMemo] = useState([]);
+  const [editMemo, setEditMemo] = useState('');
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,12 @@ const Memo = ({ userObj }) => {
         id: document.id,
         ...document.data(),
       }));
-      setMemo(memoText[0].memo);
+      setMemo(memoText);
+      if (memo.length === 0) {
+        editMemo('');
+      } else {
+        editMemo(memo[0].memo);
+      }
     });
   }, []);
 
@@ -49,19 +54,21 @@ const Memo = ({ userObj }) => {
     //   }
   };
   const onSubmit = async (e) => {
-    //   e.preventDefault();
-    //   const textObj = {
-    //     memo: editMemo,
-    //     creatorId: userObj.uid,
-    //   };
-    //   await addDoc(collection(dbService, 'memo-text'), textObj);
-  };
-  const onEdit = async (e) => {
-    //   e.preventDefault();
-    //   await updateDoc(doc(dbService, 'memo-text', `${memo}`), {
-    //     memo: editMemo,
-    //   });
-    //   setEdit(false);
+    if (memo.length === 0) {
+      e.preventDefault();
+      const textObj = {
+        memo: editMemo,
+        creatorId: userObj.uid,
+        createdAt: Date.now(),
+      };
+      await addDoc(collection(dbService, 'memo-text'), textObj);
+    } else {
+      e.preventDefault();
+      await updateDoc(doc(dbService, 'memo-text', `${memo}`), {
+        memo: editMemo,
+      });
+      setEdit(false);
+    }
   };
   const onCancel = () => {
     //   editToggle();
@@ -73,7 +80,7 @@ const Memo = ({ userObj }) => {
         {edit ? (
           <>
             {' '}
-            <MemoButton onClick={onEdit} text='저장' />
+            <MemoButton onClick={onSubmit} text='저장' />
             <MemoButton onClick={onCancel} text='취소' />
           </>
         ) : (
@@ -88,7 +95,7 @@ const Memo = ({ userObj }) => {
         {edit ? (
           <Text value={editMemo} onChange={onChange} />
         ) : (
-          <div>{memo}</div>
+          <div>{memo.length === 0 ? '' : memo[0].memo}</div>
         )}
       </MemoBox>
     </>
