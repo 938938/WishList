@@ -30,28 +30,28 @@ const Memo = ({ userObj }) => {
       }));
       setMemo(memoText);
       if (memo.length === 0) {
-        editMemo('');
+        setEditMemo('');
       } else {
-        editMemo(memo[0].memo);
+        setEditMemo(memo[0].memo);
       }
     });
-  }, []);
+  }, [edit]);
 
   const editToggle = () => {
-    //   setEdit((edit) => !edit);
+    setEdit((edit) => !edit);
   };
   const onChange = (e) => {
-    //   const {
-    //     target: { value },
-    //   } = e;
-    //   setEditMemo(value);
+    const {
+      target: { value },
+    } = e;
+    setEditMemo(value);
   };
   const onDelete = async () => {
-    //   try {
-    //     await deleteDoc(doc(dbService, 'memo-text', `${memo.creatorId}`));
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+    try {
+      await deleteDoc(doc(dbService, 'memo-text', `${memo[0].id}`));
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onSubmit = async (e) => {
     if (memo.length === 0) {
@@ -64,15 +64,15 @@ const Memo = ({ userObj }) => {
       await addDoc(collection(dbService, 'memo-text'), textObj);
     } else {
       e.preventDefault();
-      await updateDoc(doc(dbService, 'memo-text', `${memo}`), {
+      await updateDoc(doc(dbService, 'memo-text', `${memo[0].id}`), {
         memo: editMemo,
       });
-      setEdit(false);
     }
+    setEdit(false);
   };
   const onCancel = () => {
-    //   editToggle();
-    //   setEditMemo('');
+    editToggle();
+    setEditMemo('');
   };
   return (
     <>
