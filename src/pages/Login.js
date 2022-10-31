@@ -1,8 +1,4 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -41,28 +37,10 @@ const Login = () => {
     <LogInDiv>
       <LoginTitle>For your wish list</LoginTitle>
       <form onSubmit={onSubmit}>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          required
-          value={email}
-          onChange={onChange}
-        />
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          required
-          valeu={password}
-          onChange={onChange}
-        />
-        <Toggle onClick={onToggle}>
-          {newAccount ? 'Sign In' : 'Create Account'}
-        </Toggle>
-        <LoginButton onSubmit={onSubmit}>
-          {newAccount ? '회원가입' : '시작하기'}
-        </LoginButton>
+        <input name='email' type='text' placeholder='Email' required value={email} onChange={onChange} />
+        <input name='password' type='password' placeholder='Password' required valeu={password} onChange={onChange} />
+        <Toggle onClick={onToggle}>{newAccount ? 'Sign In' : 'Create Account'}</Toggle>
+        <LoginButton onSubmit={onSubmit}>{newAccount ? '회원가입' : '시작하기'}</LoginButton>
       </form>
     </LogInDiv>
   );

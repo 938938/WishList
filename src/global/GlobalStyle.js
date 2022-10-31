@@ -23,10 +23,10 @@ input{
   }
 }
 button{
-  width: 15px;
-  height: 15px;
-  border-radius: 0;
-  margin: 5px 0;
+  width: 30px;
+  height: 20px;
+  border-radius:5px 5px 0 0;
+  margin:0;
   border:0;
   cursor: pointer;
   text-align:center;

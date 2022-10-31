@@ -22,24 +22,28 @@ export default LogOut;
 
 const Logout = styled.div`
   cursor: pointer;
-  width: 20px;
+  color:gray;
   height: 20px;
+  padding: 10px 30px;
+  border: 1px solid gray;
+  border-bottom: 0;
+  border-radius: 5px 5px 0 0;
   position: absolute;
-  top: 10px;
   right: 20px;
-  display: flex;
 
   &:focus,
   &:hover,
-  &:link,
   &:active {
     color: whitesmoke;
+    background-color: gray;
   }
   @media screen and (max-width: 460px) {
     right: 40px;
   }
   .logout-icon {
     font-size: 20px;
+    width: 20px;
+    height: 20px;
     @media screen and (min-width: 460px) {
       display: none;
     }

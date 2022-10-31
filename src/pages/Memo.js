@@ -1,13 +1,4 @@
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
-  where,
-} from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MemoButton from '../components/MemoButton';
@@ -19,10 +10,7 @@ const Memo = ({ userObj }) => {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    const q = query(
-      collection(dbService, 'memo-text'),
-      where('creatorId', '==', `${userObj.uid}`)
-    );
+    const q = query(collection(dbService, 'memo-text'), where('creatorId', '==', `${userObj.uid}`));
     onSnapshot(q, (snapshot) => {
       const memoText = snapshot.docs.map((document) => ({
         id: document.id,
@@ -91,13 +79,7 @@ const Memo = ({ userObj }) => {
           </>
         )}
       </BtnBox>
-      <MemoBox>
-        {edit ? (
-          <Text value={editMemo} onChange={onChange} />
-        ) : (
-          <div>{memo.length === 0 ? '' : memo[0].memo}</div>
-        )}
-      </MemoBox>
+      <MemoBox>{edit ? <Text value={editMemo} onChange={onChange} /> : <div>{memo.length === 0 ? '' : memo[0].memo}</div>}</MemoBox>
     </>
   );
 };
@@ -106,16 +88,23 @@ export default Memo;
 
 const MemoBox = styled.div`
   width: 90vw;
-  height: 60vh;
+  height: 80vh;
   margin: 0 auto;
   background-color: #ffffff20;
+  padding: 5px;
+  box-sizing: border-box;
 `;
 const Text = styled.textarea`
   width: 90vw;
-  height: 60vh;
+  height: 80vh;
   border: 0;
   background-color: transparent;
+  padding: 5px;
+  box-sizing: border-box;
   resize: none;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const BtnBox = styled.div`

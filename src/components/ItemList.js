@@ -26,14 +26,7 @@ const ItemList = ({ items }) => {
       {' '}
       <FilterBox>
         {filterBox.map((color) => {
-          return (
-            <button
-              key={color}
-              name={color}
-              style={{ backgroundColor: color }}
-              onClick={changeFilter}
-            />
-          );
+          return <button key={color} name={color} style={{ backgroundColor: color }} onClick={changeFilter} />;
         })}
       </FilterBox>
       <Items>
@@ -54,11 +47,11 @@ const FilterBox = styled.div`
 `;
 
 const ListBox = styled.div`
-  width: 95vw;
-  height: 95vh;
-  margin: 10px auto;
-  background-color: ${(props) => props.bgColor}20;
-  border-radius: 10px;
+  width: 90vw;
+  height: 75vh;
+  margin: 40px auto;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 2px;
   position: relative;
 `;
 

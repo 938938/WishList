@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
 const Line = () => {
@@ -8,8 +8,8 @@ const Line = () => {
 export default Line;
 
 const LineDiv = styled.div`
-  width: 80vw;
+  width: 90vw;
   height: 1px;
-  margin: 20px auto;
+  margin: 0 auto;
   background-color: black;
 `;

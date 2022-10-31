@@ -7,7 +7,7 @@ import { BLUE2, GREEN1, GREEN2, GREEN3, GREEN4 } from '../global/globalColor';
 import { IoMdPhotos } from 'react-icons/io';
 import styled from 'styled-components';
 
-const ItemCreator = ({ userObj }) => {
+const ItemCreator = ({ userObj, setModal }) => {
   const colorBox = [GREEN1, GREEN2, GREEN3, GREEN4];
   const [siteLink, setSiteLink] = useState('');
   const [text, setText] = useState('');
@@ -63,75 +63,68 @@ const ItemCreator = ({ userObj }) => {
   const changeColor = (e) => {
     setChoiceColor(e.target.name);
   };
+  const onButton = () => {
+    setModal(false);
+  };
   return (
-    <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
-      <BtnBox>
-        {colorBox.map((color) => {
-          return (
-            <ColorBtn
-              bgColor={color}
-              key={color}
-              name={color}
-              onClick={changeColor}
-            />
-          );
-        })}
-      </BtnBox>
-      <PhotoBox color={choiceColor}>
-        {photoFile ? (
-          <PhotoImg src={photoFile} onClick={clearPhoto} />
-        ) : (
-          <PhotoLabel htmlFor='attach-file'>
-            <IoMdPhotos className='icon' />
-          </PhotoLabel>
-        )}
-      </PhotoBox>
-      <PhotoInput
-        id='attach-file'
-        type='file'
-        accept='image/*'
-        onChange={onFileChange}
-      />
-      <div>
-        <PhotoLabel2 htmlFor='attach-file' color={choiceColor}>
-          ▷ Photo Upload
-        </PhotoLabel2>
+    <Modal>
+      <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
+        <BtnBox>
+          {colorBox.map((color) => {
+            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} />;
+          })}
+        </BtnBox>
+        <PhotoBox color={choiceColor}>
+          {photoFile ? (
+            <PhotoImg src={photoFile} onClick={clearPhoto} />
+          ) : (
+            <PhotoLabel htmlFor='attach-file'>
+              <IoMdPhotos className='icon' />
+            </PhotoLabel>
+          )}
+        </PhotoBox>
+        <PhotoInput id='attach-file' type='file' accept='image/*' onChange={onFileChange} />
+          <PhotoLabel2 htmlFor='attach-file' color={choiceColor}>
+            ▷ Photo Upload
+          </PhotoLabel2>
+        <Input value={siteLink} placeholder='Link' name='link' type='url' onChange={onChange} />
+        <Input value={text} placeholder='추가 정보' name='text' type='text' onChange={onChange} />
         <div>
-          <Input
-            value={siteLink}
-            placeholder='Link'
-            name='link'
-            type='url'
-            onChange={onChange}
-          />
+          <FormBtn onClick={onButton}>Okay</FormBtn>
+          <FormBtn onClick={onButton}>Cancel</FormBtn>
         </div>
-        <div>
-          <Input
-            value={text}
-            placeholder='추가 정보'
-            name='text'
-            type='text'
-            onChange={onChange}
-          />
-        </div>
-      </div>
-      <SubmitBtn>Okay</SubmitBtn>
-    </CreatorForm>
+      </CreatorForm>
+    </Modal>
   );
 };
 
 export default ItemCreator;
 
+const Modal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000030;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+`;
+
 const CreatorForm = styled.form`
-  width: 40vw;
+  width: 30vw;
   min-width: 500px;
-  height: 130px;
+  height: 60vh;
   margin: 0 auto;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 10px;
   background-color: white;
   display: flex;
+  flex-flow: column;
   @media screen and (max-width: 460px) {
     width: 90vw;
     min-width: 300px;
@@ -140,15 +133,14 @@ const CreatorForm = styled.form`
 
 const BtnBox = styled.div`
   display: flex;
-  flex-direction: column;
   margin-right: 10px;
 `;
 const ColorBtn = styled.button`
-  width: 15px;
+  width: 20px;
   height: 15px;
   background-color: ${(props) => props.bgColor};
   border-radius: 0;
-  margin: 5px 0;
+  margin: 5px;
 `;
 
 const PhotoBox = styled.div`
@@ -189,7 +181,7 @@ const PhotoLabel2 = styled.label`
     cursor: pointer;
     position: relative;
     top: -5px;
-    color:${(props) => props.color};
+    color: ${(props) => props.color};
     &:hover {
       opacity: 0.5;
     }
@@ -202,7 +194,7 @@ const Input = styled.input`
   }
 `;
 
-const SubmitBtn = styled.button`
+const FormBtn = styled.button`
   margin: 5px;
   width: 90px;
   height: 90px;

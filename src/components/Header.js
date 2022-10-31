@@ -15,11 +15,10 @@ const Header = () => {
 export default Header;
 
 const HeaderBox = styled.div`
-  width: 400px;
-  height: 50px;
-  position: relative;
+  width: 90vw;
+  border-bottom: 1px solid black;
   display: flex;
   position: relative;
-  justify-content: center;
   margin: 0 auto;
+  margin-top:10px;
 `;

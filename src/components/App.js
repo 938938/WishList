@@ -22,9 +22,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div>
-        {init ? <Router isLogin={isLogin} userObj={userObj} /> : 'Loading...'}
-      </div>
+      <div>{init ? <Router isLogin={isLogin} userObj={userObj} /> : 'Loading...'}</div>
     </>
   );
 }
