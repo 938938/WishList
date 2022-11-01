@@ -9,14 +9,12 @@ export default Card;
 
 const CardBox = styled.div`
   background-color: white;
-  width: 30vw;
   height: 120px;
   display: flex;
   padding: 10px;
   border-radius: 2px;
-  margin: 10px;
   box-sizing: border-box;
-  @media screen and (max-width: 460px) {
+  /* @media screen and (max-width: 460px) {
     width: 90vw;
-  }
+  } */
 `;

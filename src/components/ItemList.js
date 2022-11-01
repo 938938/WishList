@@ -22,43 +22,55 @@ const ItemList = ({ items }) => {
     setFilterItems(items);
   }, [items]);
   return (
-    <ListBox bgColor={filterColor}>
-      {' '}
-      <FilterBox>
+<ListBox>
+<FilterBox>
         {filterBox.map((color) => {
           return <button key={color} name={color} style={{ backgroundColor: color }} onClick={changeFilter} />;
         })}
       </FilterBox>
+<ItemBox bgColor={filterColor}>
       <Items>
         {filterItems.map((item) => {
           return <Item key={item.id} itemObj={item} />;
         })}
       </Items>
+    </ItemBox>
     </ListBox>
   );
 };
 
 export default ItemList;
 
+const ListBox = styled.div`
+position:relative;
+`
+
 const FilterBox = styled.div`
   position: absolute;
   top: -20px;
-  left: 10px;
+  left: 6vw;
 `;
 
-const ListBox = styled.div`
+const ItemBox = styled.div`
   width: 90vw;
   height: 75vh;
   margin: 40px auto;
   background-color: ${(props) => props.bgColor};
   border-radius: 2px;
   position: relative;
+  padding:10px;
+  box-sizing: border-box;
+  overflow: auto;
 `;
 
 const Items = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  @media screen and (max-width: 460px) {
-    grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
