@@ -35,6 +35,7 @@ const ItemCreator = ({ userObj, setModal }) => {
     setSiteLink('');
     setText('');
     setPhotoFile('');
+    onButton();
   };
   const onChange = (e) => {
     const {
@@ -69,11 +70,6 @@ const ItemCreator = ({ userObj, setModal }) => {
   return (
     <Modal>
       <CreatorForm onSubmit={onSubmit} bgColor={BLUE2}>
-        <BtnBox>
-          {colorBox.map((color) => {
-            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} />;
-          })}
-        </BtnBox>
         <PhotoBox color={choiceColor}>
           {photoFile ? (
             <PhotoImg src={photoFile} onClick={clearPhoto} />
@@ -83,16 +79,21 @@ const ItemCreator = ({ userObj, setModal }) => {
             </PhotoLabel>
           )}
         </PhotoBox>
+        <BtnBox>
+          {colorBox.map((color) => {
+            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} />;
+          })}
+        </BtnBox>
         <PhotoInput id='attach-file' type='file' accept='image/*' onChange={onFileChange} />
           <PhotoLabel2 htmlFor='attach-file' color={choiceColor}>
             ▷ Photo Upload
           </PhotoLabel2>
         <Input value={siteLink} placeholder='Link' name='link' type='url' onChange={onChange} />
-        <Input value={text} placeholder='추가 정보' name='text' type='text' onChange={onChange} />
-        <div>
-          <FormBtn onClick={onButton}>Okay</FormBtn>
+        <Textarea value={text} placeholder='추가 정보' name='text' type='text' onChange={onChange} />
+        <BtnBox>
+          <FormBtn onClick={onSubmit}>Okay</FormBtn>
           <FormBtn onClick={onButton}>Cancel</FormBtn>
-        </div>
+        </BtnBox>
       </CreatorForm>
     </Modal>
   );
@@ -108,15 +109,16 @@ const Modal = styled.div`
   top: 0;
   left: 0;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   z-index: 100;
 `;
 
 const CreatorForm = styled.form`
-  width: 30vw;
-  min-width: 500px;
+  width: 25vw;
+  min-width: 400px;
+  max-width: 600px;
   height: 60vh;
   margin: 0 auto;
   padding: 10px;
@@ -124,7 +126,9 @@ const CreatorForm = styled.form`
   border-radius: 10px;
   background-color: white;
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media screen and (max-width: 460px) {
     width: 90vw;
     min-width: 300px;
@@ -133,7 +137,8 @@ const CreatorForm = styled.form`
 
 const BtnBox = styled.div`
   display: flex;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  justify-content: space-between;
 `;
 const ColorBtn = styled.button`
   width: 20px;
@@ -144,8 +149,8 @@ const ColorBtn = styled.button`
 `;
 
 const PhotoBox = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   overflow: hidden;
   margin: 0 10px;
@@ -156,16 +161,16 @@ const PhotoBox = styled.div`
 `;
 
 const PhotoImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 `;
 
 const PhotoLabel = styled.label`
   cursor: pointer;
 
   .icon {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-color: white;
     &:hover {
       opacity: 0.5;
@@ -189,15 +194,31 @@ const PhotoLabel2 = styled.label`
 `;
 
 const Input = styled.input`
+border:1px solid #00000020;
   @media screen and (max-width: 460px) {
     width: 30vw;
   }
 `;
 
+const Textarea = styled.textarea`
+  width:20vw;
+  min-width:200px;
+  height:200px;
+  margin:5px;
+  padding:10px;
+  border:1px solid #00000020;
+  border-radius:10px;
+  box-sizing: content-box;
+  resize: none;
+  @media screen and (max-width: 460px) {
+    width: 30vw;
+  }
+`
+
 const FormBtn = styled.button`
   margin: 5px;
-  width: 90px;
-  height: 90px;
+  width: 10vw;
+  height: 60px;
   border-radius: 10px;
   border: 0;
   &:hover {

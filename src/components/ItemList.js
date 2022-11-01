@@ -12,7 +12,7 @@ const ItemList = ({ items }) => {
     changeItem(e.target.name);
   };
   const changeItem = (e) => {
-    if (e === '#ffffff') {
+    if (e === WHITE) {
       setFilterItems(items);
     } else {
       setFilterItems(items.filter((items) => items.choiceColor === e));
