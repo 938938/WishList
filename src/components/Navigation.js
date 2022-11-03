@@ -22,6 +22,9 @@ export default Navigation;
 
 const NavBox = styled.div`
   width: 225px;
+  @media screen and (max-width: 460px) {
+    width: 180px;
+  }
   display: flex;
   justify-content: space-between;
   margin-left: 20px;

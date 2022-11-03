@@ -39,6 +39,7 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <input name='email' type='text' placeholder='Email' required value={email} onChange={onChange} />
         <input name='password' type='password' placeholder='Password' required valeu={password} onChange={onChange} />
+        
         <Toggle onClick={onToggle}>{newAccount ? 'Sign In' : 'Create Account'}</Toggle>
         <LoginButton onSubmit={onSubmit}>{newAccount ? '회원가입' : '시작하기'}</LoginButton>
       </form>
@@ -81,5 +82,8 @@ const LoginButton = styled.button`
   &:hover {
     background-color: gray;
     color: white;
+  }
+  @media screen and (max-width: 460px) {
+      width: 80vw;
   }
 `;

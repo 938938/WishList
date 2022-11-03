@@ -85,9 +85,6 @@ const ItemCreator = ({ userObj, setModal }) => {
           })}
         </BtnBox>
         <PhotoInput id='attach-file' type='file' accept='image/*' onChange={onFileChange} />
-          <PhotoLabel2 htmlFor='attach-file' color={choiceColor}>
-            ▷ Photo Upload
-          </PhotoLabel2>
         <Input value={siteLink} placeholder='Link' name='link' type='url' onChange={onChange} />
         <Textarea value={text} placeholder='추가 정보' name='text' type='text' onChange={onChange} />
         <BtnBox>
@@ -155,9 +152,9 @@ const PhotoBox = styled.div`
   overflow: hidden;
   margin: 0 10px;
   border: 3px solid ${(props) => props.color};
-  @media screen and (max-width: 460px) {
+  /* @media screen and (max-width: 460px) {
     display: none;
-  }
+  } */
 `;
 
 const PhotoImg = styled.img`
@@ -178,25 +175,25 @@ const PhotoLabel = styled.label`
   }
 `;
 
-const PhotoLabel2 = styled.label`
-  display: none;
-  @media screen and (max-width: 460px) {
-    display: block;
-    font-size: 5px;
-    cursor: pointer;
-    position: relative;
-    top: -5px;
-    color: ${(props) => props.color};
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-`;
+// const PhotoLabel2 = styled.label`
+//   display: none;
+//   @media screen and (max-width: 460px) {
+//     display: block;
+//     font-size: 5px;
+//     cursor: pointer;
+//     position: relative;
+//     top: -5px;
+//     color: ${(props) => props.color};
+//     &:hover {
+//       opacity: 0.5;
+//     }
+//   }
+// `;
 
 const Input = styled.input`
 border:1px solid #00000020;
   @media screen and (max-width: 460px) {
-    width: 30vw;
+    width: 70vw;
   }
 `;
 
@@ -211,7 +208,8 @@ const Textarea = styled.textarea`
   box-sizing: content-box;
   resize: none;
   @media screen and (max-width: 460px) {
-    width: 30vw;
+    width: 70vw;
+    height:150px;
   }
 `
 
@@ -224,6 +222,9 @@ const FormBtn = styled.button`
   &:hover {
     background-color: lightgray;
     color: white;
+  }
+  @media screen and (max-width: 460px) {
+    width: 30vw;
   }
 `;
 

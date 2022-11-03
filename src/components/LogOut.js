@@ -37,9 +37,6 @@ const Logout = styled.div`
     color: whitesmoke;
     background-color: gray;
   }
-  @media screen and (max-width: 460px) {
-    right: 40px;
-  }
   .logout-icon {
     font-size: 20px;
     width: 20px;
