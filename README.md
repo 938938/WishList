@@ -7,14 +7,26 @@ ReactJS, Firebase, styled-components 사용
 원하는 물건 등을 한군데에 모아서 볼 수 있도록 구성해두었습니다.<br>
 제공되는 색상을 통해 종류별로 구분하여 볼 수 있습니다.
 <br>
+<br>
 
 ---
 <br>
 
-입장시 화면
-![ver1.0.0](https://user-images.githubusercontent.com/92746200/197584589-f7ae5fa8-2879-498a-bb09-2ff4d951099d.png)
+Id : abc@def.com <br>
+Pw : 123123 <br>
+해당 계정을 통해 접속 및 체험을 해보실 수 있습니다.
+<br>
+<br>
+
+
+---
+<br>
+
+입장시 화면 / 아이템 추가 화면
+![ver1.1.1](https://user-images.githubusercontent.com/92746200/200286529-6ba48964-b34a-4456-81ab-ad4a2c67969a.png)
+
 메인 화면
-![ver1.0.0](https://user-images.githubusercontent.com/92746200/197585017-da1993be-1614-471c-99d7-f1ca403721b9.png)
+![ver1.1.1](https://user-images.githubusercontent.com/92746200/200286694-bb08eaae-6ef3-4bed-9829-e075fb45e55a.png)
 
 <br>
 
