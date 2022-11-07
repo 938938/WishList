@@ -2,6 +2,7 @@
 
 ReactJS, Firebase, styled-components 사용
 <br>
+사이트 : https://wish-list-938.web.app/
 <br>
 다양한 아이템을 사진, 링크, 설명과 함께 저장해둘 수 있는 사이트입니다.<br>
 원하는 물건 등을 한군데에 모아서 볼 수 있도록 구성해두었습니다.<br>
