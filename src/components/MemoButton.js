@@ -12,4 +12,9 @@ const MemoBtn = styled.button`
   height: 30px;
   margin: 10px;
   border-radius: 10px;
+  background-color:#346273;
+  color:white;
+  &:hover {
+    opacity: 0.7;
+  }
 `;

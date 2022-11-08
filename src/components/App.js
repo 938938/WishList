@@ -19,6 +19,7 @@ function App() {
       setInit(true);
     });
   }, []);
+  
   return (
     <>
       <GlobalStyle />

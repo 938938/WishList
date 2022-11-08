@@ -130,9 +130,10 @@ const Text = styled.div`
 
 const Modal = styled.img`
   position: absolute;
-  top: -130px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
+  border:4px solid black;
   max-width: 1000px;
   max-height: 600px;
   cursor: pointer;
