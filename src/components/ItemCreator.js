@@ -13,10 +13,14 @@ const ItemCreator = ({ userObj, setModal }) => {
   const [text, setText] = useState('');
   const [photoFile, setPhotoFile] = useState('');
   const [choiceColor, setChoiceColor] = useState(GREEN1);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (siteLink === '' && text === '') return;
+    if (siteLink === '' && text === '') {
+      setErrorMsg('링크 혹은 메모를 입력해주세요.')
+      return
+    };
     let photoUrl = '';
     if (photoFile !== '') {
       const photoRef = ref(storageService, `${userObj.uid}/${v4()}`);
@@ -91,6 +95,7 @@ const ItemCreator = ({ userObj, setModal }) => {
           <FormBtn onClick={onSubmit}>Okay</FormBtn>
           <FormBtn onClick={onButton}>Cancel</FormBtn>
         </BtnBox>
+        <ErrorMessage>{errorMsg}</ErrorMessage>
       </CreatorForm>
     </Modal>
   );
@@ -116,7 +121,7 @@ const CreatorForm = styled.form`
   width: 25vw;
   min-width: 400px;
   max-width: 600px;
-  height: 60vh;
+  height: 68vh;
   margin: 0 auto;
   padding: 10px;
   box-sizing: border-box;
@@ -151,6 +156,7 @@ const PhotoBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
   margin: 0 10px;
+  margin-top:15px;
   border: 3px solid ${(props) => props.color};
   /* @media screen and (max-width: 460px) {
     display: none;
@@ -231,3 +237,10 @@ const FormBtn = styled.button`
 const PhotoInput = styled.input`
   display: none;
 `;
+
+const ErrorMessage = styled.p`
+height:15px;
+font-size:13px;
+margin-left:20px;
+color:red;
+`
