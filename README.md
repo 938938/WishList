@@ -11,6 +11,7 @@ ReactJS, Firebase, styled-components 사용
 <br>
 
 ---
+
 <br>
 
 Id : abc@def.com <br>
@@ -19,8 +20,8 @@ Pw : 123123 <br>
 <br>
 <br>
 
-
 ---
+
 <br>
 
 입장시 화면 / 아이템 추가 화면
@@ -31,7 +32,10 @@ Pw : 123123 <br>
 
 <br>
 
+![사용 영상](https://user-images.githubusercontent.com/92746200/232323091-432aa2d5-a22f-4556-a19d-b807787ce12b.gif)
+
 ---
+
 <br>
 
 ## 업데이트 기록
