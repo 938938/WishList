@@ -85,7 +85,7 @@ const ItemCreator = ({ userObj, setModal }) => {
         </PhotoBox>
         <BtnBox>
           {colorBox.map((color) => {
-            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} />;
+            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} type='button' />;
           })}
         </BtnBox>
         <PhotoInput id='attach-file' type='file' accept='image/*' onChange={onFileChange} />
