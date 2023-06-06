@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authService } from '../fbase';
+import { authService } from '../../fbase';
 import { ImExit } from 'react-icons/im';
 import styled from 'styled-components';
 
@@ -22,7 +22,7 @@ export default LogOut;
 
 const Logout = styled.div`
   cursor: pointer;
-  color:gray;
+  color: gray;
   height: 20px;
   padding: 10px 30px;
   border: 1px solid gray;

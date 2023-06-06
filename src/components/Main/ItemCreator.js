@@ -2,8 +2,14 @@ import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import React, { useState } from 'react';
 import { v4 } from 'uuid';
-import { dbService, storageService } from '../fbase';
-import { BLUE2, GREEN1, GREEN2, GREEN3, GREEN4 } from '../global/globalColor';
+import { dbService, storageService } from '../../fbase';
+import {
+  BLUE2,
+  GREEN1,
+  GREEN2,
+  GREEN3,
+  GREEN4,
+} from '../../global/globalColor';
 import { IoMdPhotos } from 'react-icons/io';
 import styled from 'styled-components';
 
@@ -18,9 +24,9 @@ const ItemCreator = ({ userObj, setModal }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (siteLink === '' && text === '') {
-      setErrorMsg('링크 혹은 메모를 입력해주세요.')
-      return
-    };
+      setErrorMsg('링크 혹은 메모를 입력해주세요.');
+      return;
+    }
     let photoUrl = '';
     if (photoFile !== '') {
       const photoRef = ref(storageService, `${userObj.uid}/${v4()}`);
@@ -85,12 +91,37 @@ const ItemCreator = ({ userObj, setModal }) => {
         </PhotoBox>
         <BtnBox>
           {colorBox.map((color) => {
-            return <ColorBtn bgColor={color} key={color} name={color} onClick={changeColor} type='button' />;
+            return (
+              <ColorBtn
+                bgColor={color}
+                key={color}
+                name={color}
+                onClick={changeColor}
+                type='button'
+              />
+            );
           })}
         </BtnBox>
-        <PhotoInput id='attach-file' type='file' accept='image/*' onChange={onFileChange} />
-        <Input value={siteLink} placeholder='Link' name='link' type='url' onChange={onChange} />
-        <Textarea value={text} placeholder='추가 정보' name='text' type='text' onChange={onChange} />
+        <PhotoInput
+          id='attach-file'
+          type='file'
+          accept='image/*'
+          onChange={onFileChange}
+        />
+        <Input
+          value={siteLink}
+          placeholder='Link'
+          name='link'
+          type='url'
+          onChange={onChange}
+        />
+        <Textarea
+          value={text}
+          placeholder='추가 정보'
+          name='text'
+          type='text'
+          onChange={onChange}
+        />
         <BtnBox>
           <FormBtn onClick={onSubmit}>Okay</FormBtn>
           <FormBtn onClick={onButton}>Cancel</FormBtn>
@@ -156,7 +187,7 @@ const PhotoBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
   margin: 0 10px;
-  margin-top:15px;
+  margin-top: 15px;
   border: 3px solid ${(props) => props.color};
   /* @media screen and (max-width: 460px) {
     display: none;
@@ -197,27 +228,27 @@ const PhotoLabel = styled.label`
 // `;
 
 const Input = styled.input`
-border:1px solid #00000020;
+  border: 1px solid #00000020;
   @media screen and (max-width: 460px) {
     width: 70vw;
   }
 `;
 
 const Textarea = styled.textarea`
-  width:20vw;
-  min-width:200px;
-  height:200px;
-  margin:5px;
-  padding:10px;
-  border:1px solid #00000020;
-  border-radius:10px;
+  width: 20vw;
+  min-width: 200px;
+  height: 200px;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #00000020;
+  border-radius: 10px;
   box-sizing: content-box;
   resize: none;
   @media screen and (max-width: 460px) {
     width: 70vw;
-    height:150px;
+    height: 150px;
   }
-`
+`;
 
 const FormBtn = styled.button`
   margin: 5px;
@@ -239,8 +270,8 @@ const PhotoInput = styled.input`
 `;
 
 const ErrorMessage = styled.p`
-height:15px;
-font-size:13px;
-margin-left:20px;
-color:red;
-`
+  height: 15px;
+  font-size: 13px;
+  margin-left: 20px;
+  color: red;
+`;

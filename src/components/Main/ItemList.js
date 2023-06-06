@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { GREEN1, GREEN2, GREEN3, GREEN4, WHITE } from '../global/globalColor';
+import {
+  GREEN1,
+  GREEN2,
+  GREEN3,
+  GREEN4,
+  WHITE,
+} from '../../global/globalColor';
 import Item from './Item';
 
 const ItemList = ({ items }) => {
@@ -22,19 +28,26 @@ const ItemList = ({ items }) => {
     setFilterItems(items);
   }, [items]);
   return (
-<ListBox>
-<FilterBox>
+    <ListBox>
+      <FilterBox>
         {filterBox.map((color) => {
-          return <button key={color} name={color} style={{ backgroundColor: color }} onClick={changeFilter} />;
+          return (
+            <button
+              key={color}
+              name={color}
+              style={{ backgroundColor: color }}
+              onClick={changeFilter}
+            />
+          );
         })}
       </FilterBox>
-<ItemBox bgColor={filterColor}>
-      <Items>
-        {filterItems.map((item) => {
-          return <Item key={item.id} itemObj={item} />;
-        })}
-      </Items>
-    </ItemBox>
+      <ItemBox bgColor={filterColor}>
+        <Items>
+          {filterItems.map((item) => {
+            return <Item key={item.id} itemObj={item} />;
+          })}
+        </Items>
+      </ItemBox>
     </ListBox>
   );
 };
@@ -42,8 +55,8 @@ const ItemList = ({ items }) => {
 export default ItemList;
 
 const ListBox = styled.div`
-position:relative;
-`
+  position: relative;
+`;
 
 const FilterBox = styled.div`
   position: absolute;
@@ -58,7 +71,7 @@ const ItemBox = styled.div`
   background-color: ${(props) => props.bgColor};
   border-radius: 2px;
   position: relative;
-  padding:10px;
+  padding: 10px;
   box-sizing: border-box;
   overflow: auto;
 `;

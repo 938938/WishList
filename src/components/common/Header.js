@@ -20,5 +20,5 @@ const HeaderBox = styled.div`
   display: flex;
   position: relative;
   margin: 0 auto;
-  margin-top:30px;
+  margin-top: 30px;
 `;

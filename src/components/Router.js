@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
 import Memo from '../pages/Memo';
-import Header from './Header';
+import Header from './common/Header';
 
 const Router = ({ isLogin, userObj }) => {
   return (

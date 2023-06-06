@@ -1,7 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MemoButton from '../components/MemoButton';
+import MemoButton from '../components/Memo/MemoButton';
 import { dbService } from '../fbase';
 
 const Memo = ({ userObj }) => {
