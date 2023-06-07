@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillHome, AiOutlineFileText } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const Navigation = () => {
+  const [selected, setSelected] = useState('HOME');
+  const onClickHandler = (e) => {
+    const { innerText } = e.target;
+    setSelected(innerText);
+  };
   return (
     <NavBox>
-      <StyledLink to='/'>
+      <StyledLink
+        to='/'
+        className={selected === 'HOME' ? 'selected' : ''}
+        onClick={onClickHandler}
+      >
         <AiFillHome className='icon' />
         <NaviMenu>HOME</NaviMenu>
       </StyledLink>
-      <StyledLink to='memo'>
+      <StyledLink
+        to='memo'
+        className={selected === 'MEMO' ? 'selected' : ''}
+        onClick={onClickHandler}
+      >
         <AiOutlineFileText className='icon' />
         <NaviMenu>MEMO</NaviMenu>
       </StyledLink>
@@ -28,6 +41,12 @@ const NavBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-left: 20px;
+
+  .selected {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -40,9 +59,7 @@ const StyledLink = styled(Link)`
   padding: 10px 30px;
   display: flex;
 
-  &:focus,
-  &:hover,
-  &:active {
+  &:hover {
     text-decoration: none;
     color: white;
     background-color: black;
