@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AiFillHome, AiOutlineFileText } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const Navigation = () => {
-  const [selected, setSelected] = useState('HOME');
+  const { pathname } = useLocation();
+  const [selected, setSelected] = useState(pathname === '/' ? 'HOME' : 'MEMO');
   const onClickHandler = (e) => {
     const { innerText } = e.target;
     setSelected(innerText);
   };
+
   return (
     <NavBox>
       <StyledLink
