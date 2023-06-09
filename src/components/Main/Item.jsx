@@ -41,7 +41,16 @@ const Item = ({ itemObj }) => {
       <TextBox>
         <div>
           {itemObj.siteLink ? (
-            <ItemBtn onClick={() => window.open(itemObj.siteLink, '_blank')}>
+            <ItemBtn
+              onClick={() =>
+                window.open(
+                  itemObj.siteLink.startsWith('http')
+                    ? `${itemObj.siteLink}`
+                    : `https://${itemObj.siteLink}`,
+                  '_blank'
+                )
+              }
+            >
               <AiOutlineLink className='icon' />
             </ItemBtn>
           ) : (
