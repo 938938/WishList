@@ -126,7 +126,6 @@ const ItemBtn = styled.button`
 
 const Text = styled.div`
   margin-top: 5px;
-  width: 20vw;
   height: 70px;
   box-sizing: border-box;
   word-wrap: break-word;

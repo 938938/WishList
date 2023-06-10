@@ -70,10 +70,11 @@ const ItemBox = styled.div`
   margin: 40px auto;
   background-color: ${(props) => props.bgColor};
   border-radius: 2px;
-  position: relative;
+  position: grid;
+  gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  align-content: start;
   padding: 10px;
-  box-sizing: border-box;
-  overflow: auto;
 `;
 
 const Items = styled.div`
