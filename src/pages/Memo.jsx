@@ -1,4 +1,13 @@
-import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MemoButton from '../components/Memo/MemoButton';
@@ -10,7 +19,10 @@ const Memo = ({ userObj }) => {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    const q = query(collection(dbService, 'memo-text'), where('creatorId', '==', `${userObj.uid}`));
+    const q = query(
+      collection(dbService, 'memo-text'),
+      where('creatorId', '==', `${userObj.uid}`)
+    );
     onSnapshot(q, (snapshot) => {
       const memoText = snapshot.docs.map((document) => ({
         id: document.id,
@@ -29,9 +41,7 @@ const Memo = ({ userObj }) => {
     setEdit((edit) => !edit);
   };
   const onChange = (e) => {
-    const {
-      target: { value },
-    } = e;
+    const { value } = e.target;
     setEditMemo(value);
   };
   const onDelete = async () => {
@@ -79,7 +89,24 @@ const Memo = ({ userObj }) => {
           </>
         )}
       </BtnBox>
-      <MemoBox>{edit ? <Text value={editMemo} onChange={onChange} /> : <div>{memo.length === 0 ? '' : memo[0].memo}</div>}</MemoBox>
+      <MemoBox>
+        {edit ? (
+          <Text value={editMemo} onChange={onChange} />
+        ) : (
+          <div>
+            {memo.length === 0
+              ? ''
+              : memo[0].memo.split('\n').map((line) => {
+                  return (
+                    <span key={line}>
+                      {line}
+                      <br />
+                    </span>
+                  );
+                })}
+          </div>
+        )}
+      </MemoBox>
     </>
   );
 };
