@@ -2,7 +2,7 @@
 
 ReactJS, Firebase, styled-components 사용
 <br>
-사이트 : https://wish-list-938.web.app/
+사이트 : https://wish-list-938.vercel.app/
 <br>
 다양한 아이템을 사진, 링크, 설명과 함께 저장해둘 수 있는 사이트입니다.<br>
 원하는 물건 등을 한군데에 모아서 볼 수 있도록 구성해두었습니다.<br>
@@ -16,7 +16,8 @@ ReactJS, Firebase, styled-components 사용
 
 Id : abc@def.com <br>
 Pw : 123123 <br>
-해당 계정을 통해 접속 및 체험을 해보실 수 있습니다.
+해당 계정을 통해 접속 및 체험을 해보실 수 있습니다.<br>
+게스트 로그인을 선택할 경우 동일한 계정으로 접속됩니다.
 <br>
 <br>
 
