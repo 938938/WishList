@@ -171,7 +171,9 @@ const GuestButton = styled(LoginButton)`
 `;
 
 const GuestLabel = styled.label`
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   text-align: center;
   width: 20vw;
   display: none;
